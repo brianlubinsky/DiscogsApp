@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { IAlbumSearchResult } from '../../Search/IAlbumSearchResult';
 import { IPageableCollection } from '../../SharedModels/IPageableCollection';
 
@@ -10,31 +11,29 @@ import { IPageableCollection } from '../../SharedModels/IPageableCollection';
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AlbumListComponent implements OnInit {
-  private loadingSubject = new BehaviorSubject<boolean>(false);
-  isLoading$ = this.loadingSubject.asObservable();
 
   //retransmitting event from pager, which is not great ...
   @Output() pageSelected  = new EventEmitter<number>();
 
-  private _albums: IPageableCollection<IAlbumSearchResult>;
-  @Input() set albums(value: IPageableCollection<IAlbumSearchResult>) {
-    this.loadingSubject.next(false);
-    this._albums = value;
-  }
-  get albums():IPageableCollection<IAlbumSearchResult> {
-    return this._albums;
-  }
+  @Input() albums: IPageableCollection<IAlbumSearchResult>;
+
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor() { }
 
   ngOnInit(): void {
-    //this.onPageSelected(1);
   }
 
   onPageSelected(page:number)
   {
     this.pageSelected.emit(page);
-    this.loadingSubject.next(true);
   }
 
+  getDataSource()
+  {
+    var dataSource =  new MatTableDataSource(this.albums.results);
+    if (this.sort)
+      dataSource.sort = this.sort;
+    return dataSource;
+  }
 }

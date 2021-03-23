@@ -1,30 +1,26 @@
-<ng-container *ngIf="isLoading$|async else listTemplate" >
-  <mat-spinner></mat-spinner>
-</ng-container>
 
-<ng-template #listTemplate  >
-<!--TODO cosmetics - sticky header not working, sorting, etc . Hover over image could show full image.-->
+<!--TODO cosmetics - sticky header not working. Hover over image could show full image.-->
 
   <app-paging style="margin-left: 10px;" *ngIf="albums.pagination?.pages > 1" [pagingData]="albums.pagination" (pageSelected)="onPageSelected($event)"></app-paging>
 
-  <mat-table style="width:100%;" [dataSource]="albums.results">
+  <mat-table matSort  matSortActive="year" matSortDirection="asc" style="width:100%;" [dataSource]="getDataSource()">
     <ng-container matColumnDef="thumb" >
       <mat-header-cell *matHeaderCellDef> </mat-header-cell>
       <mat-cell *matCellDef="let element"> <img [src]="element.thumb" height="50px" width="50px" > </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="year">
-      <mat-header-cell *matHeaderCellDef> Year </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Year </mat-header-cell>
       <mat-cell class="paddedCell" *matCellDef="let element">  {{element.year? element.year : '?'}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
       <mat-cell class="paddedCell" *matCellDef="let element"> <a [routerLink]="['/Albums/AlbumsDetail',element.id]"> {{element.title}}</a> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="label">
-      <mat-header-cell *matHeaderCellDef> Label </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Label </mat-header-cell>
       <mat-cell class="paddedCell"*matCellDef="let element">  {{element.label?.length > 0 ? element.label[0] : ""}}</mat-cell>
     </ng-container>
 
@@ -33,4 +29,3 @@
       <tr mat-row *matRowDef="let row; columns: containerData.columns;"></tr>
     </ng-container>
   </mat-table>
-</ng-template>
