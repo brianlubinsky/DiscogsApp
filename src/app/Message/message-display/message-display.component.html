@@ -1,0 +1,24 @@
+<mat-card >
+
+  <button style="float:left" mat-icon-button aria-label="Next" class="mat-primary" (click)="onClearClick()" >
+    <mat-icon >cancel</mat-icon>
+  </button>
+
+  <mat-card-header>
+    <mat-card-title>
+<!--       <button mat-icon-button class="mat-primary" (click)="onClearClick()" >
+        <mat-icon *ngIf="message.type === 'Error'">warning</mat-icon>
+        <mat-icon *ngIf="message.type === 'Info'">info</mat-icon>
+      </button>
+ -->
+    </mat-card-title>
+
+    <mat-card-subtitle>
+      <div style="font-weight:600">{{message.message}}</div>
+
+    </mat-card-subtitle>
+
+
+  </mat-card-header>
+
+</mat-card>

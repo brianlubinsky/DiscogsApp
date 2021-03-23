@@ -1,0 +1,32 @@
+<ng-container *ngIf="label$|async as label">
+
+  <app-show-hide [title]="'Label Profile : ' + label.name" [defaultOpenState]="true" [resetObservable]="reset$" [image]="getPrimaryImage(label.images)" [maxImageWidth]="250" [maxImageHeight]="200" >
+    <div>{{label.profile}}</div>
+  </app-show-hide>
+
+  <ng-container *ngIf="label.urls?.length > 0">
+    <br>
+    <app-show-hide  [title]="'Links'" [defaultOpenState]="false" [resetObservable]="reset$">
+      <div *ngFor="let url of label.urls">
+        <a [href]="url" target="_blank">{{url}}</a>
+      </div>
+    </app-show-hide>
+  </ng-container>
+
+  <ng-container *ngIf="label.sublabels?.length > 0">
+    <br>
+    <app-show-hide  [title]="'Sublabels'" [defaultOpenState]="false" [resetObservable]="reset$">
+      <div *ngFor="let sublabel of label.sublabels">
+        <a [href]="'/Labels/LabelDetail/' + sublabel.id "> {{sublabel.name}}</a>
+      </div>
+    </app-show-hide>
+  </ng-container>
+
+  <ng-container *ngIf="label.contact_info">
+    <br>
+    <app-show-hide  [title]="'Contact Info'" [defaultOpenState]="false" [resetObservable]="reset$">
+      {{label.contact_info}}
+    </app-show-hide>
+  </ng-container>
+
+</ng-container>

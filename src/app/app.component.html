@@ -1,0 +1,24 @@
+<!--Brian note For full screen fill, added these styles. Also see index.html-->
+<div class="container" fxLayout="row"  style="height: 100%; min-height: 100vh; min-width:100%; display:flex; ">
+
+  <div fxFlex="5.7" style="background-color: lightblue;" ></div>
+
+  <div fxFlex>
+    <div style="background-color: lightgray; padding:15px 30px;">
+      <app-search></app-search>
+    </div>
+    <ngx-spinner [fullScreen]="true"  ></ngx-spinner>
+
+    <br>
+    <ng-container *ngFor="let message of messageService.messages$|async">
+      <app-message-display [message]="message" (clearMessage)="onClearMessage(message.guid)" ></app-message-display>
+    </ng-container>
+    <br>
+
+    <router-outlet>
+    </router-outlet>
+  </div>
+  <div fxFlex="5.7" style="background-color: lightblue;" ></div>
+</div>
+
+

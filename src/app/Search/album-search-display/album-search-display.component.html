@@ -1,0 +1,20 @@
+<div style="margin:10px 5px;">
+  <mat-card>
+
+  <mat-card-content style="margin-bottom:.1rem !important">
+    <img mat-card-image style="width: 9.2rem; height:9.2rem; margin:auto" [src]="albumSearchResult.thumb" *ngIf="albumSearchResult.thumb" [title]="getHoverText(albumSearchResult)">
+    <img mat-card-image style="width: 9.2rem; height:9.2rem; margin:auto" src="../../../assets/mic.JPG" *ngIf="!albumSearchResult.thumb" [title]="getHoverText(albumSearchResult)">
+  </mat-card-content>
+
+
+<mat-card-footer>
+  <div style="margin:0px 5px; text-align: center;" fxLayout="column">
+  <div fxLayout="row wrap" style="width: 9.2rem; line-height: 1.1rem;height:2.4rem;margin:auto;overflow: hidden;">
+    <a href="javascript:void(0)" [title]="albumSearchResult.title" style="margin: auto auto;" >{{albumSearchResult.title}}</a>
+  </div>
+  </div>
+</mat-card-footer>
+
+
+  </mat-card>
+  </div>

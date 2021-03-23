@@ -1,0 +1,18 @@
+<div style="margin:10px 5px;">
+<mat-card>
+
+<mat-card-content style="margin-bottom:.1rem !important">
+  <img mat-card-image style="width: 9.2rem; height:9.2rem; margin:auto" [src]="artistSearchResult.thumb" *ngIf="artistSearchResult.thumb">
+  <img mat-card-image style="width: 9.2rem; height:9.2rem; margin:auto" src="../../../assets/mic.JPG" *ngIf="!artistSearchResult.thumb">
+</mat-card-content>
+
+<mat-card-footer>
+  <div style="margin:0px 5px; text-align: center;" fxLayout="column">
+  <div fxLayout="row wrap" style="width: 9.2rem; line-height: 1.1rem;height:2.4rem;margin:auto;overflow: hidden;">
+    <a [href]="'Artists/ArtistDetail/' + artistSearchResult.id" [title]="artistSearchResult.title" style="margin: auto auto;" >{{artistSearchResult.title}}</a>
+  </div>
+  </div>
+</mat-card-footer>
+
+</mat-card>
+</div>

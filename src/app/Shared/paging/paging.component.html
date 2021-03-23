@@ -1,0 +1,17 @@
+<button mat-icon-button aria-label="Prev" class="mat-primary" (click)="onBeginningClick()" [disabled]="pagingData.page === 1">
+  <mat-icon>skip_previous</mat-icon>
+</button>
+
+ <button mat-icon-button aria-label="Prev" class="mat-primary" (click)="onPrevClick()" [disabled]="pagingData.page === 1">
+  <mat-icon>fast_rewind</mat-icon>
+</button>
+
+{{statusMessage}}
+
+ <button mat-icon-button aria-label="Next" class="mat-primary" (click)="onNextClick()" [disabled]="pagingData.page === pagingData.pages">
+  <mat-icon>fast_forward</mat-icon>
+</button>
+
+<button mat-icon-button aria-label="Prev" class="mat-primary" (click)="onEndClick()" [disabled]="pagingData.page === pagingData.pages">
+  <mat-icon>skip_next</mat-icon>
+</button>

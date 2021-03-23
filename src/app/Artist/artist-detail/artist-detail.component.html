@@ -1,0 +1,51 @@
+<ng-container *ngIf="artist$|async as artist">
+
+  <app-show-hide [title]="'Artist Profile : ' + artist.name" [defaultOpenState]="true" [resetObservable]="reset$" [subtitle]="artist.realname" [image]="getPrimaryImage(artist.images)" [maxImageWidth]="400" [maxImageHeight]="300" >
+    <ng-container *ngIf="artist.namevariations?.length > 0">
+      <div >
+        <i>ie <ng-container *ngFor="let namevariation of artist.namevariations; index as i;"><ng-container *ngIf="i > 0">,&nbsp;</ng-container>{{namevariation}}</ng-container></i>
+      </div>
+      <br>
+    </ng-container>
+    <div>{{artist.profile}}</div>
+  </app-show-hide>
+
+  <ng-container *ngIf="artist.urls?.length > 0">
+    <br>
+    <app-show-hide  [title]="'Links'" [defaultOpenState]="false" [resetObservable]="reset$">
+      <div *ngFor="let url of artist.urls">
+        <a [href]="url" target="_blank">{{url}}</a>
+      </div>
+    </app-show-hide>
+  </ng-container>
+
+  <ng-container *ngIf="artist.members?.length > 0">
+    <br>
+    <app-show-hide  [title]="'Members'" [defaultOpenState]="false" [resetObservable]="reset$">
+      <div *ngFor="let member of artist.members">
+        <a [routerLink]="['/Artists/ArtistDetail',member.id ]" > {{member.name}}</a>
+      </div>
+    </app-show-hide>
+  </ng-container>
+
+  <ng-container *ngIf="artist.aliases?.length > 0">
+    <br>
+    <app-show-hide  [title]="'Aka'" [defaultOpenState]="false" [resetObservable]="reset$">
+      <div *ngFor="let alias of artist.aliases">
+        <a [routerLink]="['/Artists/ArtistDetail',alias.id ]" >  {{alias.name}}</a>
+      </div>
+    </app-show-hide>
+   </ng-container>
+
+  <ng-container *ngIf="artist.groups?.length > 0" >
+    <br>
+   <app-show-hide [title]="'Groups'" [defaultOpenState]="false" [resetObservable]="reset$">
+    <div *ngFor="let group of artist.groups">
+      <a [routerLink]="['/Artists/ArtistDetail',group.id ]" >  {{group.name}}</a>
+    </div>
+   </app-show-hide>
+  </ng-container>
+</ng-container>
+
+
+

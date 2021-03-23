@@ -1,0 +1,17 @@
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+
+  <input mat-input [matAutocomplete]="auto" formControlName="searchTerm" placeholder="(Search)"  style="margin-right:20px;" >
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onAutocompleteSelected($event)" [displayWith]="autoCompleteDisplay.bind(this)" >
+    <mat-option *ngFor="let option of autocompleteTerms | async" [value]="option">
+     {{option.title}}
+    </mat-option>
+  </mat-autocomplete>
+
+  <mat-radio-group  formControlName="searchType">
+    <mat-radio-button value="artist" style="margin-right:8px" checked=true > Artist </mat-radio-button>
+    <mat-radio-button value="master" style="margin-right:8px"> Album </mat-radio-button>
+    <mat-radio-button value="label"> Label </mat-radio-button>
+  </mat-radio-group>
+
+  <button type="submit" mat-button class="mat-raised-button mat-primary" style="margin-left:20px"   >Search</button>
+</form>

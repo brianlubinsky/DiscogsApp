@@ -1,0 +1,17 @@
+<ng-container *ngTemplateOutlet="template;context:{paging:paging$|async, result:labelSearchResult$|async, filter:labelSearchFilter$|async}"></ng-container>
+
+<ng-template #template let-paging="paging" let-result="result" let-filter="filter">
+  <ng-container *ngIf="paging && result && filter && filter.title" >
+    {{paging.items? paging.Items : 'No'}} Label Search Results for '{{filter.title}}'
+
+    <br>
+    <br>
+    <app-paging *ngIf="result.length > 0" [pagingData]="paging" (pageSelected)="onPageSelected($event, filter.title)"></app-paging>
+
+    <div fxLayout="row wrap" >
+      <app-label-search-display *ngFor="let label of result" [labelSearchResult]="label" ></app-label-search-display>
+    </div>
+
+  </ng-container>
+</ng-template>
+

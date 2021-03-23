@@ -1,0 +1,15 @@
+<ng-container *ngTemplateOutlet="template;context:{paging:paging$|async, result:albumSearchResult$|async, filter:albumSearchFilter$|async}"></ng-container>
+
+<ng-template #template let-paging="paging" let-result="result" let-filter="filter">
+  <ng-container *ngIf="paging && result && filter && filter.title" >
+
+    <div style="margin-left:20px;">{{paging.items? paging.items : 'No'}} Album Search Results for '{{filter.title}}'</div>
+    <br>
+    <app-paging style="margin-left:10px;" *ngIf="result.length > 0" [pagingData]="paging" (pageSelected)="onPageSelected($event, filter.title)"></app-paging>
+
+    <div fxLayout="row wrap" >
+      <app-album-search-display *ngFor="let album of result" [albumSearchResult]="album" ></app-album-search-display>
+    </div>
+
+  </ng-container>
+</ng-template>
