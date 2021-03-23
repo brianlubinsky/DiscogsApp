@@ -6,7 +6,7 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule  } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
-
+import { MatTableModule  } from "@angular/material/table";
 
 @NgModule({
   declarations: [],
@@ -17,7 +17,8 @@ import { MatIconModule } from "@angular/material/icon";
     MatRadioModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   exports:[
     MatInputModule,
@@ -25,7 +26,8 @@ import { MatIconModule } from "@angular/material/icon";
     MatRadioModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ]
 })
 export class MaterialModule { }

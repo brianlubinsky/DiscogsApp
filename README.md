@@ -10,6 +10,8 @@ The exclusive use of masters does lead to some problems, most specifically that 
 
 I decided the best workaround would be to increase the page size to the maximum of 100 , and to sort each page by year. For most artists who have well under 100 albums (keep in mind this may include bootlegs, etc) this will work well. For artists with large catalogs and many labels, the result will be somewhat strange as navigating from page to page of results will results in ranges of years being repeated ie a true sort is not performed.
 
+Then there is the data quality. Data is crowdsourced, so you'll see duplicates and inaccuracies.
+
 ## Autocomplete
 See the autocompleteEnabled property in environment.ts . Discogs limits the number of api calls for a given token, and turning off autocomplete may help you stay under the limit.
 

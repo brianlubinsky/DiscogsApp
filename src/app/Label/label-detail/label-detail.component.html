@@ -4,6 +4,12 @@
     <div>{{label.profile}}</div>
   </app-show-hide>
 
+  <br>
+  <app-show-hide [title]="'Albums'" [defaultOpenState]="false" [resetObservable]="reset$" (open)="onAlbumsOpen(label.name)"  >
+      <app-album-list  [albums]="albums$|async"  (pageSelected)="onAlbumsPageSelected($event, label.name)" ></app-album-list>
+  </app-show-hide>
+
+
   <ng-container *ngIf="label.urls?.length > 0">
     <br>
     <app-show-hide  [title]="'Links'" [defaultOpenState]="false" [resetObservable]="reset$">

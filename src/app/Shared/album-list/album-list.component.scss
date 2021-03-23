@@ -1,0 +1,69 @@
+mat-cell, mat-header-cell, mat-footer-cell,mat-footer-row,
+mat-header-row,
+mat-row {
+    display: inline-flex !important;
+   // -ms-flex-align: center;
+   // -ms-flex-item-align: center;
+    flex-flow: row;
+
+    //TODO can't get this to vertical center ...
+    //min-width: 100% !important;
+}
+
+.cdk-column-thumb
+{
+  width:4.0rem;
+  margin: 0px .3rem 0px 0px;
+}
+
+.cdk-column-year
+{
+  width:2.5rem;
+  margin: 0px .3rem 0px 0px;
+}
+
+
+.cdk-column-title
+{
+  width:30rem;
+  margin: 0px .3rem 0px 0px;
+}
+
+.cdk-column-label
+{
+  width:12rem;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+mat-header-cell
+{
+  font-size:  1rem;
+}
+
+tr.mat-header-row {
+    height: 2.5rem;
+}
+
+
+
+// [mat-row]
+// {
+//   flex-direction: column;
+//   justify-content: center;
+// }
+
+// [class*="cdk-column-"] {
+//    margin-top : auto;
+//    margin-bottom:auto;
+//  }
+
+.paddedCell{
+  padding:0.6rem 0px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

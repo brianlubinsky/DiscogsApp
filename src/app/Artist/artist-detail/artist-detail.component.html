@@ -10,6 +10,13 @@
     <div>{{artist.profile}}</div>
   </app-show-hide>
 
+
+  <br>
+  <app-show-hide [title]="'Albums'" [defaultOpenState]="false" [resetObservable]="reset$" (open)="onAlbumsOpen(artist.name)"  >
+      <app-album-list  [albums]="albums$|async"  (pageSelected)="onAlbumsPageSelected($event, artist.name)" ></app-album-list>
+  </app-show-hide>
+
+
   <ng-container *ngIf="artist.urls?.length > 0">
     <br>
     <app-show-hide  [title]="'Links'" [defaultOpenState]="false" [resetObservable]="reset$">
@@ -45,6 +52,7 @@
     </div>
    </app-show-hide>
   </ng-container>
+
 </ng-container>
 
 

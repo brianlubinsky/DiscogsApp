@@ -50,7 +50,7 @@ export class SearchService extends ISearchService
   searchForArtistAlbums(filter:ISearchFilter): Observable<IPageableCollection<IAlbumSearchResult>>{
     const adaptedFilter = {title:"",page:filter.page};
     let params = new HttpParams();
-    params = params.append('artist',encodeURIComponent(filter.title));
+    params = params.append('artist',filter.title);
     params = params.append('format','Album|Compilation|EP');
 
     return this.search<IAlbumSearchResult>('master',100,adaptedFilter,params);
@@ -59,7 +59,7 @@ export class SearchService extends ISearchService
   searchForLabelAlbums(filter:ISearchFilter): Observable<IPageableCollection<IAlbumSearchResult>>{
     const adaptedFilter = {title:"",page:filter.page};
     let params = new HttpParams();
-    params = params.append('label',encodeURIComponent(filter.title));
+    params = params.append('label',encodeURI(filter.title));
     params = params.append('format','Album|Compilation|EP');
 
     return this.search<IAlbumSearchResult>('master',100,adaptedFilter,params);
