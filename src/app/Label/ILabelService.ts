@@ -13,5 +13,5 @@ export abstract class ILabelService extends IDiscogsServiceBase {
 
   abstract getLabel(id:number):Observable<ILabel>;
 
-  abstract getLabelReleases(id:number, page:number):Observable<ILabelReleases>;
+  //abstract getLabelReleases(id:number, page:number):Observable<ILabelReleases>;
 }

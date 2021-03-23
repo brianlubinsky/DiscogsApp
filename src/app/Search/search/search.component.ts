@@ -73,5 +73,7 @@ export class SearchComponent implements OnInit {
       this.router.navigate(['Artists/ArtistDetail',event.option.value.id]);
     else if (this.searchForm.value.searchType === 'label')
       this.router.navigate(['Labels/LabelDetail',event.option.value.id]);
+    else
+      this.router.navigate(['Albums/AlbumDetail',event.option.value.id]);
   }
 }

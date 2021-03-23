@@ -15,6 +15,7 @@ import { LabelSearchResultComponent } from './label-search-result/label-search-r
 import { SharedModule  } from "../Shared/shared.module";
 import { SearchLinkDirective } from './search-link.directive';
 import { SearchLinkComponent } from './search-link/search-link.component';
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SearchLinkComponent } from './search-link/search-link.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports:[
     SearchComponent,

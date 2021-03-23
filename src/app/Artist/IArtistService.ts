@@ -13,5 +13,5 @@ export abstract class IArtistService extends IDiscogsServiceBase {
 
   abstract getArtist(id:number):Observable<IArtist>;
 
-  abstract getArtistReleases(id:number, page:number):Observable<IArtistReleases>;
+  //abstract getArtistReleases(id:number, page:number):Observable<IArtistReleases>;
 }

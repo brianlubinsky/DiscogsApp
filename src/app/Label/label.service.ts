@@ -19,12 +19,12 @@ export class LabelService extends ILabelService {
     return this.http.get<ILabel>(this.getUrl(id.toString()));
   }
 
-  getLabelReleases(id: number, page:number): Observable<ILabelReleases> {
-    var params = new HttpParams();
-    params = params.append('page',page.toString());
-    params = params.append('per_page', environment.pageSize.toString());
+  // getLabelReleases(id: number, page:number): Observable<ILabelReleases> {
+  //   var params = new HttpParams();
+  //   params = params.append('page',page.toString());
+  //   params = params.append('per_page', environment.pageSize.toString());
 
-    return this.http.get<ILabelReleases>(this.getUrl(id.toString() + '/releases'),{params:params});
-  }
+  //   return this.http.get<ILabelReleases>(this.getUrl(id.toString() + '/releases'),{params:params});
+  // }
 
 }

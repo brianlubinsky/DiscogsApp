@@ -19,13 +19,13 @@ export class ArtistService extends IArtistService {
     return this.http.get<IArtist>(this.getUrl(id.toString()));
   }
 
-  getArtistReleases(id: number, page:number): Observable<IArtistReleases> {
-    var params = new HttpParams();
-    params = params.append('sort','year');
-    params = params.append('page',page.toString());
-    params = params.append('per_page', environment.pageSize.toString());
+  // getArtistReleases(id: number, page:number): Observable<IArtistReleases> {
+  //   var params = new HttpParams();
+  //   params = params.append('sort','year');
+  //   params = params.append('page',page.toString());
+  //   params = params.append('per_page', environment.pageSize.toString());
 
-    return this.http.get<IArtistReleases>(this.getUrl(id.toString() + '/releases'),{params:params});
-  }
+  //   return this.http.get<IArtistReleases>(this.getUrl(id.toString() + '/releases'),{params:params});
+  // }
 
 }

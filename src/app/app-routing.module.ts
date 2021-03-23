@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path:'Labels',
     loadChildren: () => import('./Label/label.module').then(m => m.LabelModule)
+  },
+  {
+    path:'Albums',
+    loadChildren: () => import('./Album/album.module').then(m => m.AlbumModule)
   }
 ];
 

@@ -1,5 +1,5 @@
 
-<!--TODO cosmetics - sticky header not working. Hover over image could show full image.-->
+<!--TODO cosmetics - sticky header not working. Hover over image could show full image (Angular popovers are not supported in Material though - tooltip is text only).-->
 
   <app-paging style="margin-left: 10px;" *ngIf="albums.pagination?.pages > 1" [pagingData]="albums.pagination" (pageSelected)="onPageSelected($event)"></app-paging>
 
@@ -16,7 +16,8 @@
 
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
-      <mat-cell class="paddedCell" *matCellDef="let element"> <a [routerLink]="['/Albums/AlbumsDetail',element.id]"> {{element.title}}</a> </mat-cell>
+      <!--Router link not working??? TODO-->
+      <mat-cell class="paddedCell" *matCellDef="let element"> <a [href]="'/Albums/AlbumDetail/'+element.id"> {{element.title}}</a> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="label">

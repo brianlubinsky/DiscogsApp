@@ -1,0 +1,8 @@
+<ng-container *ngIf="album$|async as album">
+
+  <app-show-hide [title]="'Album Profile : ' + album.title" [defaultOpenState]="true" [resetObservable]="reset$" [subtitle]=" (album.artists?.length > 0 ? album.artists[0].name : '') + ' - ' + album.year" [image]="getPrimaryImage(album.images)" [maxImageWidth]="240" [maxImageHeight]="180" >
+
+    <div *ngIf="album.genres?.length > 0" >Genres: {{album.genres.join()}}</div>
+    <div *ngIf="album.styles?.length > 0">Styles: {{album.styles.join()}}</div>
+  </app-show-hide>
+</ng-container>
