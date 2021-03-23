@@ -24,6 +24,10 @@ export abstract class ISearchService extends IDiscogsServiceBase {
 
   abstract searchForLabel(): Observable<IPageableCollection<ISearchResult>>;
 
+  abstract searchForArtistAlbums(filter:ISearchFilter): Observable<IPageableCollection<IAlbumSearchResult>>;
+
+  abstract searchForLabelAlbums(filter:ISearchFilter): Observable<IPageableCollection<IAlbumSearchResult>>;
+
   abstract artistAutocomplete(name:string) : Observable<Array<ISearchResult>>;
 
   abstract albumAutocomplete(name:string) : Observable<Array<ISearchResult>>;

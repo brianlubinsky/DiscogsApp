@@ -47,6 +47,24 @@ export class SearchService extends ISearchService
     return this.search<ISearchResult>('label',environment.pageSize,this.filterSubject.value,new HttpParams())
   }
 
+  searchForArtistAlbums(filter:ISearchFilter): Observable<IPageableCollection<IAlbumSearchResult>>{
+    const adaptedFilter = {title:"",page:filter.page};
+    let params = new HttpParams();
+    params = params.append('artist',encodeURIComponent(filter.title));
+    params = params.append('format','Album|Compilation|EP');
+
+    return this.search<IAlbumSearchResult>('master',100,adaptedFilter,params);
+  }
+
+  searchForLabelAlbums(filter:ISearchFilter): Observable<IPageableCollection<IAlbumSearchResult>>{
+    const adaptedFilter = {title:"",page:filter.page};
+    let params = new HttpParams();
+    params = params.append('label',encodeURIComponent(filter.title));
+    params = params.append('format','Album|Compilation|EP');
+
+    return this.search<IAlbumSearchResult>('master',100,adaptedFilter,params);
+  }
+
   artistAutocomplete(name:string) : Observable<Array<ISearchResult>>
   {
     return this.autoComplete('artist',name);
@@ -77,10 +95,12 @@ export class SearchService extends ISearchService
   {
     const url = this.getUrl('search');
 
-    let params = customParams.append('q',filter.title);
-    params = params.append('type',type);
+    let params = customParams.append('type',type);
     params = params.append('page',filter.page.toString());
     params = params.append('per_page', pageSize.toString());
+
+    if (filter.title)
+      params = params.append('q',filter.title);
 
     return this.http.get<IPageableCollection<T>>(url, {params:params});
   }
