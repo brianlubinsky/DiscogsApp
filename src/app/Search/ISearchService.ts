@@ -5,6 +5,7 @@ import { ISearchFilter } from "./ISearchFilter";
 import { IDiscogsServiceBase} from '../IDiscogsServiceBase'
 import { HttpClient } from "@angular/common/http";
 import { IPagingData } from "../SharedModels/IPagingData";
+import { IPageableCollection } from "../SharedModels/IPageableCollection";
 
 export abstract class ISearchService extends IDiscogsServiceBase {
 
@@ -13,19 +14,15 @@ export abstract class ISearchService extends IDiscogsServiceBase {
      super(http);
   }
 
-  //TODO separating the paging and result observables is kind of terrible.
-  //Create IPageableCollection
   abstract filter$ : Observable<ISearchFilter>;
-
-  abstract paging$: Observable<IPagingData>;
 
   abstract updateFilter(filter: ISearchFilter);
 
-  abstract searchForArtist(): Observable<Array<ISearchResult>>;
+  abstract searchForArtist(): Observable<IPageableCollection<ISearchResult>>;
 
-  abstract searchForAlbum(): Observable<Array<IAlbumSearchResult>>;
+  abstract searchForAlbum(): Observable<IPageableCollection<IAlbumSearchResult>>;
 
-  abstract searchForLabel(): Observable<Array<ISearchResult>>;
+  abstract searchForLabel(): Observable<IPageableCollection<ISearchResult>>;
 
   abstract artistAutocomplete(name:string) : Observable<Array<ISearchResult>>;
 

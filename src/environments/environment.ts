@@ -9,11 +9,16 @@ export const environment = {
   autocompleteEnabled:true,
   pageSize:40,
   enableDebugMessages:true //TODO implement in logger
-  //TODO get this into github!!!
+
+  //TODO scss cleanup/implentation
   //TODO - image gallery Maybe use this : https://openbase.com/js/@ks89/angular-modal-gallery, or this http://ivylab.space/gallery
   //TODO Dynamic HTML rendering for profiles
-  //TODO List of albums for artists and labels
   //TODO album details page
+  //TODO List of albums for artists and labels
+  //Album search - this is probably about the best I can do. URL encode the name
+  //Update the README with explanations
+//https://api.discogs.com/database/search?artist=fugazi&token=zwLdKzvRQOrHOSuteUJwHRnkzjLymhtNhCzcqpcH&type=master&per_page=500&format=Album|Compilation|EP
+//https://api.discogs.com/database/search?artist=The%20Rolling%20Stones&token=zwLdKzvRQOrHOSuteUJwHRnkzjLymhtNhCzcqpcH&type=master&per_page=100&page=4&format=Album|Compilation|EP
 };
 
 /*

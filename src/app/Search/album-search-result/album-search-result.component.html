@@ -1,14 +1,14 @@
-<ng-container *ngTemplateOutlet="template;context:{paging:paging$|async, result:albumSearchResult$|async, filter:albumSearchFilter$|async}"></ng-container>
+<ng-container *ngTemplateOutlet="template;context:{pageableResult:albumSearchResult$|async, filter:albumSearchFilter$|async}"></ng-container>
 
-<ng-template #template let-paging="paging" let-result="result" let-filter="filter">
-  <ng-container *ngIf="paging && result && filter && filter.title" >
+<ng-template #template let-result="pageableResult" let-filter="filter">
+  <ng-container *ngIf="result && filter && filter.title" >
 
-    <div style="margin-left:20px;">{{paging.items? paging.items : 'No'}} Album Search Results for '{{filter.title}}'</div>
+    <div style="margin-left:20px;">{{result.pagination.items > 0 ? result.pagination.items : 'No'}} Album Search Results for '{{filter.title}}'</div>
     <br>
-    <app-paging style="margin-left:10px;" *ngIf="result.length > 0" [pagingData]="paging" (pageSelected)="onPageSelected($event, filter.title)"></app-paging>
+    <app-paging style="margin-left:10px;" *ngIf="result.results.length > 0" [pagingData]="result.pagination" (pageSelected)="onPageSelected($event, filter.title)"></app-paging>
 
     <div fxLayout="row wrap" >
-      <app-album-search-display *ngFor="let album of result" [albumSearchResult]="album" ></app-album-search-display>
+      <app-album-search-display *ngFor="let album of result.results" [albumSearchResult]="album" ></app-album-search-display>
     </div>
 
   </ng-container>
