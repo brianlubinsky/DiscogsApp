@@ -10,7 +10,7 @@ The exclusive use of masters does lead to some problems, most specifically that 
 
 I decided the best workaround would be to increase the page size to the maximum of 100 , and to sort each page by year. For most artists who have well under 100 albums (keep in mind this may include bootlegs, etc) this will work well. For artists with large catalogs and many labels, the result will be somewhat strange as navigating from page to page of results will results in ranges of years being repeated ie a true sort is not performed.
 
-Remarkably, neither of the detailed responses for release or master give label information, though this will be found when searching as described above.
+The details for releases vs masters are also slightly different. The album details page uses a mix and match of each - only the release details had label information and a more complete list of credits.
 
 Then there is the data quality. Data is crowdsourced, so you'll see duplicates and inaccuracies. It's a few api, so, hey can't complain too much.
 

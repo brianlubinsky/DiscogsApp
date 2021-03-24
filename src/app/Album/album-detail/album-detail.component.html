@@ -1,7 +1,7 @@
-<ng-container *ngTemplateOutlet="template;context:{album:album$|async, expandedTracks:expandedTracks$|async}"></ng-container>
+<ng-container *ngTemplateOutlet="template;context:{album:album$|async,release:release$|async, expandedTracks:expandedTracks$|async}"></ng-container>
 
-<ng-template #template let-album="album" let-expandedTracks="expandedTracks"  >
-<ng-container *ngIf="album">
+<ng-template #template let-album="album" let-release="release" let-expandedTracks="expandedTracks"  >
+<ng-container *ngIf="album && release">
 
   <app-show-hide [title]="'Album Profile : ' + album.title" [defaultOpenState]="true" [resetObservable]="reset$"  [image]="getPrimaryImage(album.images)" [maxImageWidth]="240" [maxImageHeight]="180" >
 
@@ -10,16 +10,22 @@
         <span *ngFor="let artist of album.artists; index as i;">
           <a  [routerLink]="['/Artists/ArtistDetail' ,artist.id]" >{{artist.name}}</a> {{i < album.artists.length -1 ? ',':''}}
         </span>
-
+    </div>
+    <div *ngIf="release.labels?.length > 0">
+      Labels :
+        <span *ngFor="let label of getDistinctLabels( release.labels); index as i;">
+          <a  [routerLink]="['/Labels/LabelDetail' ,label.id]" >{{label.name}}</a> {{i < getDistinctLabels( release.labels).length -1 ? ',':''}}
+        </span>
     </div>
     <div>Year: {{album.year}}</div>
     <div *ngIf="album.genres?.length > 0" >Genres: {{album.genres.join()}}</div>
     <div *ngIf="album.styles?.length > 0">Styles: {{album.styles.join()}}</div>
+    <div *ngIf="release.rating">Rating: {{release.rating.average}}/5 ({{release.rating.count}} users) </div>
   </app-show-hide>
 
   <br>
 
-  <app-show-hide [title]="'Tracks'" [defaultOpenState]="true" [resetObservable]="reset$"   >
+  <app-show-hide [title]="'Tracks'" [resetObservable]="reset$"   >
     <div *ngFor="let track of album.tracklist; index as i">
       <ng-container *ngIf="!track.extraartists?.length" >
           {{track.position + ' - ' + track.title +  (track.duration? ' (' + track.duration + ')' : '') }}
@@ -33,6 +39,14 @@
         </ng-container>
       </ng-container>
     </div>
+  </app-show-hide>
+
+  <app-show-hide *ngIf="release.extraartists" [title]="'Credits'" [resetObservable]="reset$" >
+    <div *ngFor="let artist of getSortedArtists(release.extraartists)">
+      <a  [routerLink]="['/Artists/ArtistDetail' ,artist.id]" >{{artist.name}}</a> - {{artist.role}}
+      <div class="tracklistCredit" *ngIf="artist.tracks">Tracks : {{artist.tracks}}</div>
+    </div>
+
   </app-show-hide>
 </ng-container>
 </ng-template>

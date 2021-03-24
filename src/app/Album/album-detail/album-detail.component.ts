@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { concatMap, switchMap } from 'rxjs/operators';
+import { IIdNamePair } from '../../SharedModels/IIdNamePair';
 import { IImage } from '../../SharedModels/IImage';
 import { IPageableCollection } from '../../SharedModels/IPageableCollection';
 import { ImageHelper } from '../../Utilities/imageHelper';
 import { IAlbumService } from '../IAlbumService';
 import { IAlbum } from '../Models/IAlbum';
+import { IAlbumArtist } from '../Models/IAlbumArtist';
+import { IRelease } from '../Models/IRelease';
 
 @Component({
   selector: 'app-album-detail',
@@ -22,6 +25,7 @@ export class AlbumDetailComponent implements OnInit {
   expandedTracks$ = this.expandedTracksSubject.asObservable();
 
   album$ : Observable<IAlbum>;
+  release$ : Observable<IRelease>;
 
   constructor(private route:ActivatedRoute, private albumService:IAlbumService) { }
 
@@ -33,6 +37,12 @@ export class AlbumDetailComponent implements OnInit {
         return this.albumService.getAlbum(id);
       })
     );
+
+    this.release$ = this.album$.pipe(
+      concatMap(master=>{
+        return this.albumService.getRelease(master.main_release);
+      })
+    );
   }
 
   getPrimaryImage (images:IImage[]) :IImage
@@ -42,14 +52,29 @@ export class AlbumDetailComponent implements OnInit {
 
   toggleTrackDetail(trackIndex:number)
   {
-    console.log('toggling ' + trackIndex );
      var arrayCopy = this.expandedTracksSubject.getValue();
      var index = arrayCopy.indexOf(trackIndex);
      if(index > -1)
         arrayCopy.splice(index,1);
      else
        arrayCopy.push(trackIndex);
+
      this.expandedTracksSubject.next(arrayCopy);
   }
 
+  getDistinctLabels(labels:Array<IIdNamePair>)
+  {
+    var distinctArray = new Array<IIdNamePair>();
+    labels.forEach(element => {
+      if (!distinctArray.find(x=>x.id == element.id))
+        distinctArray.push(element);
+    });
+
+    return distinctArray;
+  }
+
+  getSortedArtists(artists:Array<IAlbumArtist>)
+  {
+    return artists.sort((x,y)=>{return x.id > y.id ? -1 : (x.id == y.id ? 0 : 1); })
+  }
 }
