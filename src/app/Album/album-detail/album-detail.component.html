@@ -30,7 +30,7 @@
       <mat-checkbox (change)="expandTrackCredits(album.tracklist.length,$event.checked)">
         Show/hide all track credits
       </mat-checkbox>
-      <br><br>  
+      <br><br>
     </div>
     <div *ngFor="let track of album.tracklist; index as i">
       <ng-container *ngIf="!track.extraartists?.length" >
@@ -47,7 +47,7 @@
     </div>
   </app-show-hide>
 
-  <app-show-hide *ngIf="release.extraartists" [title]="'Credits'" [resetObservable]="reset$" >
+  <app-show-hide *ngIf="release.extraartists?.length > 0" [title]="'Credits'" [resetObservable]="reset$" >
     <div *ngFor="let artist of getSortedArtists(release.extraartists)">
       <a  [routerLink]="['/Artists/ArtistDetail' ,artist.id]" >{{artist.name}}</a> - {{artist.role}}
       <div class="tracklistCredit" *ngIf="artist.tracks">Tracks : {{artist.tracks}}</div>

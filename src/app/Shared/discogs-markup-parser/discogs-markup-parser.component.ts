@@ -1,6 +1,5 @@
 import { _isNumberValue } from '@angular/cdk/coercion';
-import { stringify } from '@angular/compiler/src/util';
-import { AfterViewChecked, ChangeDetectionStrategy, Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-discogs-markup-parser',
@@ -8,21 +7,15 @@ import { AfterViewChecked, ChangeDetectionStrategy, Component, Input, OnInit, Qu
   styleUrls: ['./discogs-markup-parser.component.scss'],
   changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class DiscogsMarkupParserComponent implements OnInit, AfterViewChecked {
+export class DiscogsMarkupParserComponent implements OnInit {
 
   @Input() discogsMarkup:string
-  @ViewChildren('searchLink') searchLinks:QueryList<any>;
-
   parsedMarkup : string;
 
   constructor() { }
 
   ngOnInit(): void {
     this.parsedMarkup = this.parseMarkup(this.discogsMarkup);
-  }
-
-  ngAfterViewChecked(): void {
-    console.log('search links : ' + this.searchLinks.length);
   }
 
   parseMarkup(markup: string)
@@ -61,7 +54,7 @@ export class DiscogsMarkupParserComponent implements OnInit, AfterViewChecked {
     {
       tokenValue = token.substring(1);
       if ( _isNumberValue(tokenValue) )
-        return "<a #searchLink href='/Artists/ArtistDetail/" +tokenValue +  "'>(Artist Link)</a>";
+        return "<span style='font-style:italic'><a href='/Artists/ArtistDetail/" +tokenValue +  "'>(Artist Link)</a></span>";
       else
         return tokenValue.substring(1);
     }
@@ -69,7 +62,7 @@ export class DiscogsMarkupParserComponent implements OnInit, AfterViewChecked {
     {
       tokenValue = token.substring(1);
       if ( _isNumberValue(tokenValue) )
-        return "<a #searchLink href='/Labels/LabelDetail/" +tokenValue +  "'>(Label Link)</a>";
+        return "<span style='font-style:italic'><a href='/Labels/LabelDetail/" +tokenValue +  "'>(Label Link)</a></span>";
       else
         return tokenValue.substring(1);
     }
