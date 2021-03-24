@@ -1,5 +1,6 @@
 import { _isNumberValue } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { stringify } from '@angular/compiler/src/util';
+import { AfterViewChecked, ChangeDetectionStrategy, Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-discogs-markup-parser',
@@ -7,20 +8,26 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   styleUrls: ['./discogs-markup-parser.component.scss'],
   changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class DiscogsMarkupParserComponent implements OnInit {
+export class DiscogsMarkupParserComponent implements OnInit, AfterViewChecked {
 
   @Input() discogsMarkup:string
+  @ViewChildren('searchLink') searchLinks:QueryList<any>;
 
   parsedMarkup : string;
+
   constructor() { }
 
   ngOnInit(): void {
     this.parsedMarkup = this.parseMarkup(this.discogsMarkup);
   }
 
+  ngAfterViewChecked(): void {
+    console.log('search links : ' + this.searchLinks.length);
+  }
+
   parseMarkup(markup: string)
   {
-    let replacements = new  Map<string,string>();
+    let replacements = new  Array<{token:string, replacement:string}>();
     let standardTokenStart = -1;
     let currentToken:string;
     for (let index = 0; index < markup.length; ++index)
@@ -32,8 +39,7 @@ export class DiscogsMarkupParserComponent implements OnInit {
         if (markup[index] === ']')
         {
           currentToken =markup.substring(standardTokenStart+1, index);
-          if (!replacements.has(currentToken))
-            replacements.set(currentToken, this.getHtmlFromToken(currentToken))
+          replacements.push({token: currentToken, replacement: this.getHtmlFromToken(currentToken)});
           standardTokenStart = -1;
         }
       }
@@ -41,7 +47,7 @@ export class DiscogsMarkupParserComponent implements OnInit {
 
     let parsedValue = markup;
     for(let item of replacements)
-      parsedValue = parsedValue.replace('['+ item[0] + ']',item[1]);
+      parsedValue = parsedValue.replace('['+ item.token + ']',item.replacement);
 
     return parsedValue;
   }
@@ -50,13 +56,12 @@ export class DiscogsMarkupParserComponent implements OnInit {
   {
     //dynamic components - with input - just turning out to be too much
     //ViewChildren don't populate dynamic content, all a big mess
-
     let tokenValue : string;
     if (token.startsWith('a'))
     {
       tokenValue = token.substring(1);
       if ( _isNumberValue(tokenValue) )
-        return "<a href='/Artists/ArtistDetail/" +tokenValue +  "'>(Artist Link)</a>";
+        return "<a #searchLink href='/Artists/ArtistDetail/" +tokenValue +  "'>(Artist Link)</a>";
       else
         return tokenValue.substring(1);
     }
@@ -64,10 +69,14 @@ export class DiscogsMarkupParserComponent implements OnInit {
     {
       tokenValue = token.substring(1);
       if ( _isNumberValue(tokenValue) )
-        return "<a href='/Labels/LabelDetail/" +tokenValue +  "'>(Label Link)</a>";
+        return "<a #searchLink href='/Labels/LabelDetail/" +tokenValue +  "'>(Label Link)</a>";
       else
         return tokenValue.substring(1);
     }
+    else if (token === "b")
+      return "<b>"
+    else if (token === "/b")
+      return "</b>"
     else
       return "";
 
