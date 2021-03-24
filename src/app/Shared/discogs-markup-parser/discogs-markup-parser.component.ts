@@ -20,8 +20,6 @@ export class DiscogsMarkupParserComponent implements OnInit {
 
   parseMarkup(markup: string)
   {
-
-debugger;
     let replacements = new  Map<string,string>();
     let standardTokenStart = -1;
     let currentToken:string;
@@ -50,7 +48,9 @@ debugger;
 
   private getHtmlFromToken(token:string)
   {
-    console.log('parsing ' + token);
+    //dynamic components - with input - just turning out to be too much
+    //ViewChildren don't populate dynamic content, all a big mess
+
     let tokenValue : string;
     if (token.startsWith('a'))
     {
@@ -58,7 +58,7 @@ debugger;
       if ( _isNumberValue(tokenValue) )
         return "<a href='/Artists/ArtistDetail/" +tokenValue +  "'>(Artist Link)</a>";
       else
-        return tokenValue;
+        return tokenValue.substring(1);
     }
     else if (token.startsWith('l'))
     {
@@ -66,8 +66,10 @@ debugger;
       if ( _isNumberValue(tokenValue) )
         return "<a href='/Labels/LabelDetail/" +tokenValue +  "'>(Label Link)</a>";
       else
-        return tokenValue;
+        return tokenValue.substring(1);
     }
+    else
+      return "";
 
   }
 }
