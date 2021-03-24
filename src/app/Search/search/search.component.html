@@ -1,6 +1,6 @@
 <form [formGroup]="searchForm" (ngSubmit)="search()">
 
-  <input mat-input [matAutocomplete]="auto" formControlName="searchTerm" placeholder="(Search)"  style="margin-right:20px;" >
+  <input mat-input [matAutocomplete]="auto" formControlName="searchTerm" placeholder="(Search)"  style="margin-right:1.25rem;width:15rem;" >
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onAutocompleteSelected($event)" [displayWith]="autoCompleteDisplay.bind(this)" >
     <mat-option *ngFor="let option of autocompleteTerms | async" [value]="option">
      {{option.title}}

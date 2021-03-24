@@ -19,4 +19,10 @@ export class RequestProgressService {
     this.currentRequests = this.currentRequests.filter(x=>x !== requestGuid);
     this.requestInProgressSubject.next(this.currentRequests.length > 0);
   }
+
+  clearRequests()
+  {
+    this.currentRequests = [];
+  }
+
 }

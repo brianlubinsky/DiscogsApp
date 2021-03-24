@@ -52,7 +52,10 @@ export class AppComponent implements OnInit{
         if (event instanceof NavigationEnd)
           this.loggingService.log("Navigation to " + event.urlAfterRedirects + ' complete', LogLevel.Info);
         else if (event instanceof NavigationStart)
+        {
           this.loggingService.log("Navigation to " + (<NavigationStart>event).url + ' started', LogLevel.Info);
+          this.requestProgressService.clearRequests();
+        }
         else if (event instanceof NavigationError)
           this.loggingService.log("Navigation to " + (<NavigationError>event).url + ' errored : ' + JSON.stringify((<NavigationError>event).error), LogLevel.Error);
       }

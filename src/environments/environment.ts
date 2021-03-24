@@ -10,10 +10,11 @@ export const environment = {
   pageSize:40,
   enableDebugMessages:true //TODO implement in logger
 
+  //TODO some sort of home page - genres maybe?
+  //TODO Should the show/hide only allow one open per page?
   //TODO scss cleanup/implentation
   //TODO - image gallery Maybe use this : https://openbase.com/js/@ks89/angular-modal-gallery, or this http://ivylab.space/gallery
   //TODO Dynamic HTML rendering for profiles
-  //TODO album details page
 };
 
 /*
