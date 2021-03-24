@@ -10,6 +10,7 @@ import { IAlbumService } from '../IAlbumService';
 import { IAlbum } from '../Models/IAlbum';
 import { IAlbumArtist } from '../Models/IAlbumArtist';
 import { IRelease } from '../Models/IRelease';
+import { ITrack } from '../Models/ITrack';
 
 @Component({
   selector: 'app-album-detail',
@@ -76,5 +77,22 @@ export class AlbumDetailComponent implements OnInit {
   getSortedArtists(artists:Array<IAlbumArtist>)
   {
     return artists.sort((x,y)=>{return x.id > y.id ? -1 : (x.id == y.id ? 0 : 1); })
+  }
+
+  showExpandAllTracks(tracks:Array<ITrack>)
+  {
+    return tracks && tracks.filter(x=>x.extraartists?.length > 0).length > 0;
+  }
+  expandTrackCredits(trackCount:number, expand:boolean)
+  {
+     var trackArray = new Array<number>();
+
+     if (expand)
+     {
+       for(let index = 0; index < trackCount; ++index)
+         trackArray.push(index);
+     }
+
+     this.expandedTracksSubject.next(trackArray);
   }
 }

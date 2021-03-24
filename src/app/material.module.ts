@@ -8,6 +8,8 @@ import { MatCardModule  } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule  } from "@angular/material/table";
 import { MatSortModule  } from "@angular/material/sort";
+import { MatCheckboxModule  } from "@angular/material/checkbox";
+
 @NgModule({
   declarations: [],
   imports: [
@@ -19,7 +21,8 @@ import { MatSortModule  } from "@angular/material/sort";
     MatCardModule,
     MatIconModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ],
   exports:[
     MatInputModule,
@@ -29,7 +32,8 @@ import { MatSortModule  } from "@angular/material/sort";
     MatCardModule,
     MatIconModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }

@@ -26,6 +26,12 @@
   <br>
 
   <app-show-hide [title]="'Tracks'" [resetObservable]="reset$"   >
+    <div *ngIf="showExpandAllTracks(album.tracklist)" style="font-style:italic;">
+      <mat-checkbox (change)="expandTrackCredits(album.tracklist.length,$event.checked)">
+        Show/hide all track credits
+      </mat-checkbox>
+      <br><br>  
+    </div>
     <div *ngFor="let track of album.tracklist; index as i">
       <ng-container *ngIf="!track.extraartists?.length" >
           {{track.position + ' - ' + track.title +  (track.duration? ' (' + track.duration + ')' : '') }}
