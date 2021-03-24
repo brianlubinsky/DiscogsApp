@@ -4,12 +4,14 @@ import { ShowHideComponent  } from "./show-hide/show-hide.component";
 import { PagingComponent  } from "./paging/paging.component";
 import { MaterialModule } from "../material.module";
 import { AlbumListComponent } from './album-list/album-list.component';
+import { RouterModule  } from "@angular/router";
 
 @NgModule({
   declarations: [ShowHideComponent, PagingComponent, AlbumListComponent],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule
   ],
   exports:[ShowHideComponent,PagingComponent, AlbumListComponent]
 })

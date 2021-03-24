@@ -16,8 +16,7 @@
 
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
-      <!--Router link not working??? TODO-->
-      <mat-cell class="paddedCell" *matCellDef="let element"> <a [href]="'/Albums/AlbumDetail/'+element.id"> {{element.title}}</a> </mat-cell>
+      <mat-cell class="paddedCell" *matCellDef="let element"> <a [routerLink]="['/Albums/AlbumDetail',element.id]"> {{element.title}}</a> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="label">

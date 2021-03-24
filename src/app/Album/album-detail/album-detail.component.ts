@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { IImage } from '../../SharedModels/IImage';
 import { IPageableCollection } from '../../SharedModels/IPageableCollection';
@@ -17,6 +17,9 @@ export class AlbumDetailComponent implements OnInit {
 
   private resetSubject: Subject<void> = new Subject();
   reset$ = this.resetSubject.asObservable();
+
+  private expandedTracksSubject : BehaviorSubject<number[]> = new  BehaviorSubject<number[]>([]);
+  expandedTracks$ = this.expandedTracksSubject.asObservable();
 
   album$ : Observable<IAlbum>;
 
@@ -36,4 +39,17 @@ export class AlbumDetailComponent implements OnInit {
   {
     return ImageHelper.getPrimaryImage(images);
   }
+
+  toggleTrackDetail(trackIndex:number)
+  {
+    console.log('toggling ' + trackIndex );
+     var arrayCopy = this.expandedTracksSubject.getValue();
+     var index = arrayCopy.indexOf(trackIndex);
+     if(index > -1)
+        arrayCopy.splice(index,1);
+     else
+       arrayCopy.push(trackIndex);
+     this.expandedTracksSubject.next(arrayCopy);
+  }
+
 }

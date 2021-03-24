@@ -5,6 +5,7 @@ import { ITrack } from "./ITrack";
 export interface IAlbum
 {
    id:number;
+   main_release:number;
    title:string;
    year:number;
    images:Array<IImage>;
@@ -12,4 +13,5 @@ export interface IAlbum
    styles:Array<string>;
    tracklist:Array<ITrack>;
    artists:Array<IAlbumArtist>;
+
 }

@@ -1,8 +1,38 @@
-<ng-container *ngIf="album$|async as album">
+<ng-container *ngTemplateOutlet="template;context:{album:album$|async, expandedTracks:expandedTracks$|async}"></ng-container>
 
-  <app-show-hide [title]="'Album Profile : ' + album.title" [defaultOpenState]="true" [resetObservable]="reset$" [subtitle]=" (album.artists?.length > 0 ? album.artists[0].name : '') + ' - ' + album.year" [image]="getPrimaryImage(album.images)" [maxImageWidth]="240" [maxImageHeight]="180" >
+<ng-template #template let-album="album" let-expandedTracks="expandedTracks"  >
+<ng-container *ngIf="album">
 
+  <app-show-hide [title]="'Album Profile : ' + album.title" [defaultOpenState]="true" [resetObservable]="reset$"  [image]="getPrimaryImage(album.images)" [maxImageWidth]="240" [maxImageHeight]="180" >
+
+    <div *ngIf="album.artists?.length > 0">
+      Artists :
+        <span *ngFor="let artist of album.artists; index as i;">
+          <a  [routerLink]="['/Artists/ArtistDetail' ,artist.id]" >{{artist.name}}</a> {{i < album.artists.length -1 ? ',':''}}
+        </span>
+
+    </div>
+    <div>Year: {{album.year}}</div>
     <div *ngIf="album.genres?.length > 0" >Genres: {{album.genres.join()}}</div>
     <div *ngIf="album.styles?.length > 0">Styles: {{album.styles.join()}}</div>
   </app-show-hide>
+
+  <br>
+
+  <app-show-hide [title]="'Tracks'" [defaultOpenState]="true" [resetObservable]="reset$"   >
+    <div *ngFor="let track of album.tracklist; index as i">
+      <ng-container *ngIf="!track.extraartists?.length" >
+          {{track.position + ' - ' + track.title +  (track.duration? ' (' + track.duration + ')' : '') }}
+      </ng-container>
+      <ng-container *ngIf="track.extraartists?.length > 0" >
+        {{track.position + ' - '}} <a href="javascript:void(0)" (click)="toggleTrackDetail(i)">{{track.title}} </a>  {{  track.duration? ' (' + track.duration + ')' : ''}}
+        <ng-container  *ngIf="expandedTracks?.includes(i)">
+          <div *ngFor="let extraArtist of track.extraartists" class="tracklistCredit">
+              <a [routerLink]="['/Artists/ArtistDetail', extraArtist.id]" >{{extraArtist.name}}</a> - {{extraArtist.role}}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </app-show-hide>
 </ng-container>
+</ng-template>
