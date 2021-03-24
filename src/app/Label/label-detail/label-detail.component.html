@@ -1,7 +1,7 @@
 <ng-container *ngIf="label$|async as label">
 
   <app-show-hide [title]="'Label Profile : ' + label.name" [defaultOpenState]="true" [resetObservable]="reset$" [image]="getPrimaryImage(label.images)" [maxImageWidth]="250" [maxImageHeight]="200" >
-    <div>{{label.profile}}</div>
+    <div><app-discogs-markup-parser [discogsMarkup]="label.profile"></app-discogs-markup-parser> </div>
   </app-show-hide>
 
   <br>

@@ -11,6 +11,7 @@ export const environment = {
   enableDebugMessages:true //TODO implement in logger
 
   //TODO some sort of home page - genres maybe?
+  //TODO make sure everything is OnPush
   //TODO Should the show/hide only allow one open per page?
   //TODO scss cleanup/implentation
   //TODO - image gallery Maybe use this : https://openbase.com/js/@ks89/angular-modal-gallery, or this http://ivylab.space/gallery
