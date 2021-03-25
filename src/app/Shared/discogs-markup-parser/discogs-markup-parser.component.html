@@ -1,2 +1,3 @@
-<p [innerHTML]="parsedMarkup|safeHtml"></p>
+
+<p [innerHTML]="parseMarkup(false,labels$|async) |safeHtml"></p>
 
