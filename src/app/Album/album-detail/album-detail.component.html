@@ -3,7 +3,7 @@
 <ng-template #template let-album="album" let-release="release" let-expandedTracks="expandedTracks"  >
 <ng-container *ngIf="album && release">
 
-  <app-show-hide [title]="'Album Profile : ' + album.title" [defaultOpenState]="true" [resetObservable]="reset$"  [image]="getPrimaryImage(album.images)" [maxImageWidth]="240" [maxImageHeight]="180" >
+  <app-show-hide [title]="'Album Profile : ' + album.title" [defaultOpenState]="true" [resetObservable]="reset$"  [image]="getPrimaryImage(album.images)" [maxImageWidth]="250" [maxImageHeight]="200" >
 
     <div *ngIf="album.artists?.length > 0">
       Artists :

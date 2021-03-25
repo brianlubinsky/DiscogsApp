@@ -64,6 +64,7 @@ export class DiscogsMarkupParserComponent implements OnInit{
     return parsedValue;
   }
 
+  //TODO may need to throttle these if more than a few
   private initializeObservables() {
     var labelObservableArray = new Array<Observable<ILabel>>();
     this.requestedLabelIds.forEach(x => {
@@ -92,6 +93,10 @@ export class DiscogsMarkupParserComponent implements OnInit{
       return "<b>"
     else if (token === "/b")
       return "</b>"
+      else if (token === "u")
+      return "<u>"
+    else if (token === "/u")
+      return "</u>"
     else
       return "";
   }

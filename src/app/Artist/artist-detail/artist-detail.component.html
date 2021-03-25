@@ -1,6 +1,6 @@
 <ng-container *ngIf="artist$|async as artist">
 
-  <app-show-hide [title]="'Artist Profile : ' + artist.name" [defaultOpenState]="true" [resetObservable]="reset$" [subtitle]="artist.realname" [image]="getPrimaryImage(artist.images)" [maxImageWidth]="400" [maxImageHeight]="300" >
+  <app-show-hide [title]="'Artist Profile : ' + artist.name" [defaultOpenState]="true" [resetObservable]="reset$" [subtitle]="artist.realname" [image]="getPrimaryImage(artist.images)" [maxImageWidth]="250" [maxImageHeight]="200" >
     <ng-container *ngIf="artist.namevariations?.length > 0">
       <div >
         <i>ie <ng-container *ngFor="let namevariation of artist.namevariations; index as i;"><ng-container *ngIf="i > 0">,&nbsp;</ng-container>{{namevariation}}</ng-container></i>
