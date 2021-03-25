@@ -3,6 +3,9 @@ export class ImageHelper
 {
   static getPrimaryImage (images:IImage[]) :IImage
   {
-    return images?.find(x=>x.type=== "primary");
+    var image =  images?.find(x=>x.type=== "primary");
+    if (!image && images?.length > 0)
+      image = images[0];
+    return image;
   }
 }
