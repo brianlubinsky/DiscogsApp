@@ -9,15 +9,16 @@ import { DiscogsMarkupParserComponent } from './discogs-markup-parser/discogs-ma
 import { SafeHtmlPipe } from './safe-html.pipe';
 import {IvyGalleryModule} from 'angular-gallery';
 import { GalleryComponent } from './gallery/gallery.component';
+import { ShowHideGroupComponent } from './show-hide-group/show-hide-group.component';
 
 @NgModule({
-  declarations: [ShowHideComponent, PagingComponent, AlbumListComponent, DiscogsMarkupParserComponent, SafeHtmlPipe, GalleryComponent],
+  declarations: [ShowHideComponent, PagingComponent, AlbumListComponent, DiscogsMarkupParserComponent, SafeHtmlPipe, GalleryComponent, ShowHideGroupComponent],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
     IvyGalleryModule
   ],
-  exports:[ShowHideComponent,PagingComponent, AlbumListComponent, DiscogsMarkupParserComponent, GalleryComponent]
+  exports:[ShowHideComponent,PagingComponent, AlbumListComponent, DiscogsMarkupParserComponent, GalleryComponent, ShowHideGroupComponent]
 })
 export class SharedModule { }

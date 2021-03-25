@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { IImage } from '../../SharedModels/IImage';
+import { Guid  } from "../../Utilities/guid";
 
 @Component({
   selector: 'app-show-hide',
@@ -21,6 +22,8 @@ export class ShowHideComponent implements OnInit, OnDestroy {
 
   @Input()  defaultOpenState :boolean;
 
+  guid : string;
+
   private resetSubscription : Subscription;
   @Input()  set resetObservable (value:Observable<void>)   {
       this.resetSubscription = value.subscribe(()=>this.isOpenSubject.next(this.defaultOpenState) );
@@ -32,7 +35,9 @@ export class ShowHideComponent implements OnInit, OnDestroy {
   private fullsizeImageSubject = new BehaviorSubject<boolean>(false);
   fullsizeImage$ = this.fullsizeImageSubject.asObservable();
 
-  constructor() {}
+  constructor() {
+    this.guid =Guid.newGuid();
+  }
 
   ngOnInit(): void {
     this.isOpenSubject = new BehaviorSubject<boolean>(this.defaultOpenState);
@@ -52,6 +57,14 @@ export class ShowHideComponent implements OnInit, OnDestroy {
   onClose(){
     this.isOpenSubject.next(false);
     this.close.emit();
+  }
+
+  forceOpen(open:boolean)
+  {
+    if (open && !this.isOpenSubject.value)
+      this.onOpen();
+    else if (!open && this.isOpenSubject.value)
+      this.onClose()
   }
 
   getSizedImage(image:IImage, fullSize:boolean)

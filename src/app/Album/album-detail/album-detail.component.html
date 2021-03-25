@@ -2,6 +2,7 @@
 
 <ng-template #template let-album="album" let-release="release" let-expandedTracks="expandedTracks"  >
 <ng-container *ngIf="album && release">
+<app-show-hide-group>
 
   <app-show-hide [title]="'Album Profile : ' + album.title" [defaultOpenState]="true" [resetObservable]="reset$"  [image]="getPrimaryImage(album.images)" [maxImageWidth]="250" [maxImageHeight]="200" >
 
@@ -64,5 +65,6 @@
   </app-show-hide>
 </ng-container>
 
+</app-show-hide-group>
 </ng-container>
 </ng-template>
