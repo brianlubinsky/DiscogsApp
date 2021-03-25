@@ -31,6 +31,9 @@ export class DiscogsMarkupParserComponent implements OnInit{
 
   parseMarkup(initializing:boolean,labels:Array<ILabel>, artists:Array<IArtist>)
   {
+    if (!this.discogsMarkup)
+      return "";
+
     let tokenParseValues = new  Array<{token:string, replacement:string}>();
     let tokenStartIndex = -1;
     let currentToken:string;

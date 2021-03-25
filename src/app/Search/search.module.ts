@@ -41,7 +41,7 @@ import { RouterModule } from "@angular/router";
   ],
   exports:[
     SearchComponent,
-    SearchLinkDirective //TODO implementation
+    SearchLinkDirective //TODO Remove these from project
     //PagingComponent
     //ArtistSearchResultComponent,
     //ArtistSearchDisplayComponent,
