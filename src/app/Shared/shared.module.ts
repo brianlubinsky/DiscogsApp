@@ -7,14 +7,17 @@ import { AlbumListComponent } from './album-list/album-list.component';
 import { RouterModule  } from "@angular/router";
 import { DiscogsMarkupParserComponent } from './discogs-markup-parser/discogs-markup-parser.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
+import {IvyGalleryModule} from 'angular-gallery';
+import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
-  declarations: [ShowHideComponent, PagingComponent, AlbumListComponent, DiscogsMarkupParserComponent, SafeHtmlPipe],
+  declarations: [ShowHideComponent, PagingComponent, AlbumListComponent, DiscogsMarkupParserComponent, SafeHtmlPipe, GalleryComponent],
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    IvyGalleryModule
   ],
-  exports:[ShowHideComponent,PagingComponent, AlbumListComponent, DiscogsMarkupParserComponent]
+  exports:[ShowHideComponent,PagingComponent, AlbumListComponent, DiscogsMarkupParserComponent, GalleryComponent]
 })
 export class SharedModule { }

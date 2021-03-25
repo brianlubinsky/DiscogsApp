@@ -13,8 +13,9 @@ export const environment = {
   //TODO some sort of home page - genres maybe?
   //TODO make sure everything is OnPush
   //TODO Should the show/hide only allow one open per page?
-  //TODO scss cleanup/implentation
-  //TODO - image gallery Maybe use this : https://openbase.com/js/@ks89/angular-modal-gallery, or this http://ivylab.space/gallery
+  //TODO scss cleanup/implentation, or can I replace with flex?
+  //TODO Can I pass in a list of retrieved extraartists/sublabels to do some matching in the markup parser?
+
 };
 
 /*

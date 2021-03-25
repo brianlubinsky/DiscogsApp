@@ -1,0 +1,5 @@
+<div fxLayout="row wrap" fxLayoutGap="5px" >
+  <ng-container *ngFor="let image of images; index as i">
+    <img [src]="image.uri150" (click)="showGallery(i)">
+  </ng-container>
+</div>

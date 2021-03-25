@@ -23,6 +23,13 @@
     <div *ngIf="release.community?.rating">Rating: {{release.community.rating.average}}/5 ({{release.community.rating.count}} users) </div>
   </app-show-hide>
 
+  <ng-container *ngIf="album.images?.length > 1">
+    <br>
+    <app-show-hide  [title]="'Photo Gallery'" [defaultOpenState]="false" [resetObservable]="reset$">
+      <app-gallery [images]="album.images"></app-gallery>
+    </app-show-hide>
+  </ng-container>
+
   <br>
 
   <app-show-hide [title]="'Tracks'" [resetObservable]="reset$"   >
