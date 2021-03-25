@@ -54,12 +54,15 @@
     </div>
   </app-show-hide>
 
-  <app-show-hide *ngIf="release.extraartists?.length > 0" [title]="'Credits'" [resetObservable]="reset$" >
+  <ng-container *ngIf="release.extraartists?.length > 0">
+    <br>
+  <app-show-hide  [title]="'Credits'" [resetObservable]="reset$" >
     <div *ngFor="let artist of getSortedArtists(release.extraartists)">
       <a  [routerLink]="['/Artists/ArtistDetail' ,artist.id]" >{{artist.name}}</a> - {{artist.role}}
       <div class="tracklistCredit" *ngIf="artist.tracks">Tracks : {{artist.tracks}}</div>
     </div>
-
   </app-show-hide>
+</ng-container>
+
 </ng-container>
 </ng-template>

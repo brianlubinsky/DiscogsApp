@@ -10,18 +10,17 @@
     <div><app-discogs-markup-parser [discogsMarkup]="artist.profile"></app-discogs-markup-parser></div>
   </app-show-hide>
 
-
-  <br>
-  <app-show-hide [title]="'Albums'" [defaultOpenState]="false" [resetObservable]="reset$" (open)="onAlbumsOpen(artist.name)"  >
-      <app-album-list  [albums]="albums$|async"  (pageSelected)="onAlbumsPageSelected($event, artist.name)" ></app-album-list>
-  </app-show-hide>
-
   <ng-container *ngIf="artist.images?.length > 1">
     <br>
     <app-show-hide  [title]="'Photo Gallery'" [defaultOpenState]="false" [resetObservable]="reset$">
       <app-gallery [images]="artist.images"></app-gallery>
     </app-show-hide>
   </ng-container>
+
+  <br>
+  <app-show-hide [title]="'Albums'" [defaultOpenState]="false" [resetObservable]="reset$" (open)="onAlbumsOpen(artist.name)"  >
+      <app-album-list  [albums]="albums$|async"  (pageSelected)="onAlbumsPageSelected($event, artist.name)" ></app-album-list>
+  </app-show-hide>
 
   <ng-container *ngIf="artist.urls?.length > 0">
     <br>

@@ -42,6 +42,7 @@ export class DiscogsMarkupParserComponent implements OnInit {
     for(let item of replacements)
       parsedValue = parsedValue.replace('['+ item.token + ']',item.replacement);
 
+    parsedValue = parsedValue.replace(/\n\r?/g, '<br />');
     return parsedValue;
   }
 
