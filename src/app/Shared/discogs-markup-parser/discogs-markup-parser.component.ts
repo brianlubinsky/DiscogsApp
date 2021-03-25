@@ -5,6 +5,8 @@ import { IArtistService } from '../../Artist/IArtistService';
 import { IArtist } from '../../Artist/Models/IArtist';
 import { ILabelService } from '../../Label/ILabelService';
 import { ILabel } from '../../Label/Models/ILabel';
+import { MessageService } from '../../Message/message.service';
+import { MessageType } from '../../Message/messageType';
 
 @Component({
   selector: 'app-discogs-markup-parser',
@@ -23,7 +25,7 @@ export class DiscogsMarkupParserComponent implements OnInit{
   artists$ : Observable<IArtist[]>;
   requestedArtistIds = new Array<number>();
 
-  constructor(private labelService:ILabelService, private artistService:IArtistService) { }
+  constructor(private labelService:ILabelService, private artistService:IArtistService, private messageService:MessageService) { }
 
   ngOnInit(): void {
     this.parseMarkup(true,null,null); //observables need to be set during OnInit for template to bind correctly
@@ -64,19 +66,24 @@ export class DiscogsMarkupParserComponent implements OnInit{
     return parsedValue;
   }
 
-  //TODO need to throttle these if more than a few
   private initializeObservables() {
     var labelObservableArray = new Array<Observable<ILabel>>();
+    var artistObservableArray = new Array<Observable<IArtist>>();
+
     this.requestedLabelIds.forEach(x => {
-      labelObservableArray.push(this.labelService.getLabel(x));
+      if (labelObservableArray.length + artistObservableArray.length < 4)
+        labelObservableArray.push(this.labelService.getLabel(x));
     });
     this.labels$ = combineLatest(labelObservableArray);
 
-    var artistObservableArray = new Array<Observable<IArtist>>();
     this.requestedArtistIds.forEach(x => {
-      artistObservableArray.push(this.artistService.getArtist(x));
+      if (labelObservableArray.length + artistObservableArray.length < 4)
+        artistObservableArray.push(this.artistService.getArtist(x));
     });
     this.artists$ = combineLatest(artistObservableArray);
+
+    if (this.requestedArtistIds.length + this.requestedLabelIds.length >= 4)
+      this.messageService.addMessage({message : "Due to Discogs api rate limits, we are unable to resolve all label/artist links",messageData:null, type:MessageType.Info})
   }
 
   private getHtmlFromToken(token:string, labels:Array<ILabel>, artists:Array<IArtist>)
