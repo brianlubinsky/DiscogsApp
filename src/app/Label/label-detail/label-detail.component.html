@@ -38,7 +38,7 @@
   <ng-container *ngIf="label.contact_info">
     <br>
     <app-show-hide  [title]="'Contact Info'" [defaultOpenState]="false" [resetObservable]="reset$">
-      {{label.contact_info}}
+      <app-discogs-markup-parser [discogsMarkup]="label.contact_info"></app-discogs-markup-parser>
     </app-show-hide>
   </ng-container>
 
