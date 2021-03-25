@@ -25,6 +25,21 @@ export class RequestLogInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           var response = (<HttpResponse<any>> event);
           this.logger.log(request.method + " Complete URL:" + request.url + " Status : " + response.status, LogLevel.Info);
+
+          //Not going to work
+          //access-control-expose-headers is set to Location, so these are not exposed
+          // response.headers.append("access-control-expose-headers","*");
+          // response.headers.keys();
+          // let rateLimitMessage  = "";
+          // if (response.headers.has("X-Discogs-Ratelimit"))
+          //   rateLimitMessage = "Rate Limit : " + response.headers["X-Discogs-Ratelimit"];
+          // if (response.headers.has("X-Discogs-Ratelimit-Used"))
+          //   rateLimitMessage = rateLimitMessage +  " Used : " + response.headers["X-Discogs-Ratelimit-Used"];
+          // if (response.headers.has("X-Discogs-Ratelimit-Remaining"))
+          //   rateLimitMessage = rateLimitMessage +  "Remaining : " + response.headers["X-Discogs-Ratelimit-Remaining"];
+
+          //if (rateLimitMessage)
+           // this.logger.log( rateLimitMessage, LogLevel.Debug);
         }
       }
     ))

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ISearchResult } from '../ISearchResult';
 import { ISearchFilter  } from "../ISearchFilter";
@@ -10,7 +10,8 @@ import { IPageableCollection } from '../../SharedModels/IPageableCollection';
 @Component({
   selector: 'app-artist-search-result',
   templateUrl: './artist-search-result.component.html',
-  styleUrls: ['./artist-search-result.component.scss']
+  styleUrls: ['./artist-search-result.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class ArtistSearchResultComponent implements OnInit {
 

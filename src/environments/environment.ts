@@ -8,10 +8,9 @@ export const environment = {
   discogs_api_token:"zwLdKzvRQOrHOSuteUJwHRnkzjLymhtNhCzcqpcH",
   autocompleteEnabled:true,
   pageSize:40,
-  enableDebugMessages:true //TODO implement in logger
+  enableDebugMessages:true
 
-  //TODO some sort of home page - genres maybe?
-  //TODO make sure everything is OnPush
+  //TODO some sort of home page - genres maybe? Can only list albums by hardcoded genres, not sure I want to
   //TODO Should the show/hide only allow one open per page?
   //TODO scss cleanup/implentation, or can I replace with flex?
 

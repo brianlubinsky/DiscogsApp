@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Subscription } from 'rxjs';
@@ -9,7 +9,8 @@ import { MessageService  } from "./Message/message.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit{
   title = 'Discogs';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ISearchResult } from '../ISearchResult';
 import { ISearchFilter  } from "../ISearchFilter";
@@ -10,7 +10,8 @@ import { IPageableCollection } from '../../SharedModels/IPageableCollection';
 @Component({
   selector: 'app-label-search-result',
   templateUrl: './label-search-result.component.html',
-  styleUrls: ['./label-search-result.component.scss']
+  styleUrls: ['./label-search-result.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class LabelSearchResultComponent implements OnInit {
 

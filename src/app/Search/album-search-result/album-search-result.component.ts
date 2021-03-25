@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IAlbumSearchResult } from '../IAlbumSearchResult';
 import { ISearchFilter  } from "../ISearchFilter";
@@ -10,7 +10,8 @@ import { IPageableCollection } from '../../SharedModels/IPageableCollection';
 @Component({
   selector: 'app-album-search-result',
   templateUrl: './album-search-result.component.html',
-  styleUrls: ['./album-search-result.component.scss']
+  styleUrls: ['./album-search-result.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AlbumSearchResultComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { concatMap, switchMap } from 'rxjs/operators';
@@ -15,7 +15,8 @@ import { ITrack } from '../Models/ITrack';
 @Component({
   selector: 'app-album-detail',
   templateUrl: './album-detail.component.html',
-  styleUrls: ['./album-detail.component.scss']
+  styleUrls: ['./album-detail.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AlbumDetailComponent implements OnInit {
 

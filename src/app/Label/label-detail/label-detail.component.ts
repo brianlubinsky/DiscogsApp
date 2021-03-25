@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute  } from "@angular/router";
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -13,7 +13,8 @@ import { ILabel } from '../Models/ILabel';
 @Component({
   selector: 'app-label-detail',
   templateUrl: './label-detail.component.html',
-  styleUrls: ['./label-detail.component.scss']
+  styleUrls: ['./label-detail.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class LabelDetailComponent implements OnInit {
 

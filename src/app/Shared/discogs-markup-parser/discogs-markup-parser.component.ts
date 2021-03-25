@@ -64,7 +64,7 @@ export class DiscogsMarkupParserComponent implements OnInit{
     return parsedValue;
   }
 
-  //TODO may need to throttle these if more than a few
+  //TODO need to throttle these if more than a few
   private initializeObservables() {
     var labelObservableArray = new Array<Observable<ILabel>>();
     this.requestedLabelIds.forEach(x => {
