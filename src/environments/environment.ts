@@ -10,8 +10,10 @@ export const environment = {
   pageSize:40,
   enableDebugMessages:true
 
+  //TODO Module cleanup. Material is imported all over the place.
   //TODO some sort of home page - genres maybe? Can only list albums by hardcoded genres, not sure I want to
   //TODO scss cleanup/implentation, or can I replace with flex?
+  //TODO concatMap should be switchMap in most places
 
 };
 

@@ -88,10 +88,6 @@ export class DiscogsMarkupParserComponent implements OnInit{
 
   private getHtmlFromToken(token:string, labels:Array<ILabel>, artists:Array<IArtist>)
   {
-    let tokenValue : string;
-    let foundResult : ILabel;
-    let parsedValue:string;
-
     if (token.startsWith('a'))
       return this.parseArtistToken(token,artists);
     else if (token.startsWith('l'))
@@ -110,6 +106,7 @@ export class DiscogsMarkupParserComponent implements OnInit{
 
   private parseLabelToken(token:string, labels:Array<ILabel>)
   {
+      //using href rather than router links is non-ideal ... but this api is more than a little non-ideal
       const tokenValue = token.substring(1);
       if ( _isNumberValue(tokenValue) )
       {
